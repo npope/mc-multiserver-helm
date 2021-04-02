@@ -3,6 +3,5 @@ name: mc-multiserver
 description: Deploy Multiple Minecraft servers + a Bungeecord proxy and connect them together
 
 type: application
-name: mc-multiserver
 version: 0.1.2
 

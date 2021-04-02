@@ -2,7 +2,10 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-# See https://hub.docker.com/r/itzg/bungeecord for explanation of the variables below
+# This will be the default server that new users are routed to when they join
+lobbyServer: "alpha"
+
+# See https://hub.docker.com/r/itzg/bungeecord for a full explanation of the variables
 proxy:
   type: "WATERFALL"
   motd: "Welcome to the Minecraft Server"
@@ -10,9 +13,9 @@ proxy:
   rcon_password: "passw0rd!"
   max_players: 20
 
-# See https://github.com/itzg/docker-minecraft-server/blob/master/README.md for explanation of the variables below
-# This will create a stateful set with {count} identical minecraft servers
-#  attached to the bungeecord proxy
+# See https://github.com/itzg/docker-minecraft-server/blob/master/README.md for explanation of the variables
+# A deployment and service will be created for the bungeecord proxy and each server defined below.
+# Each server will be attached to the bungeecord proxy.
 servers:
   - name: "alpha"
     type: "PAPER"
@@ -50,5 +53,3 @@ servers:
     mode: "creative"
     storageClassName: "default"
     storageSize: "1Gi"
-# This will be the default server that new users are routed to when they join
-lobbyServer: "alpha"

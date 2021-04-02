@@ -7,7 +7,7 @@ spec:
     matchLabels:
       app: minecraft
   serviceName: mcservers
-  replicas: {{ .Values.servers.count }}
+  replicas: {{ len .Values.servers }}
   template:
     metadata:
       labels:

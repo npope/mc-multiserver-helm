@@ -7,21 +7,14 @@ data:
     ip_forward: true
     online_mode: true
     servers:
-      lobby:
-        address: minecraft-0.mcservers
+      {{- range $index, $server := .Values.servers }}
+      {{ $server.name }}:
+        address: minecraft-{{ $index }}.mcservers
         restricted: false
-      one:
-        address: minecraft-1.mcservers
-        restricted: false
-      two:
-        address: minecraft-2.mcservers
-        restricted: false
-      three:
-        address: minecraft-3.mcservers
-        restricted: false
+      {{- end }}
     listeners:
       - motd: {{ .Values.proxy.motd }}
         priorities:
-        - lobby
+        - {{ .Values.lobbyServer }}
         proxy_protocol: false
         max_players: {{ .Values.proxy.max_players }}

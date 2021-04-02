@@ -24,6 +24,7 @@ servers:
     rcon_password: "passw0rd!"
     generate_structures: "true"
     mode: "creative"
+    storageClassName: "default"
     storageSize: "1Gi"
   - name: "beta"
     type: "PAPER"
@@ -35,6 +36,7 @@ servers:
     rcon_password: "passw0rd!"
     generate_structures: "true"
     mode: "survival"
+    storageClassName: "default"
     storageSize: "1Gi"
   - name: "gamma"
     type: "PAPER"
@@ -46,6 +48,7 @@ servers:
     rcon_password: "passw0rd!"
     generate_structures: "true"
     mode: "creative"
+    storageClassName: "default"
     storageSize: "1Gi"
 # This will be the default server that new users are routed to when they join
 lobbyServer: "alpha"

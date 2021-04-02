@@ -7,9 +7,9 @@ data:
     ip_forward: true
     online_mode: true
     servers:
-      {{- range $index, $server := .Values.servers }}
-      {{ $server.name }}:
-        address: minecraft-{{ $index }}.mcservers
+      {{- range .Values.servers }}
+      {{ .name }}:
+        address: minecraft-{{ .name }}-service
         restricted: false
       {{- end }}
     listeners:

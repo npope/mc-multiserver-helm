@@ -1,42 +1,39 @@
+{{- range .Values.servers }}
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
-  name: minecraft
+  name: {{ .name }}-deployment
 spec:
   selector:
     matchLabels:
       app: minecraft
-  serviceName: mcservers
-  replicas: {{ len .Values.servers }}
+      server: {{ .name }}
   template:
     metadata:
       labels:
         app: minecraft
+        server: {{ .name }}
     spec:
-      terminationGracePeriodSeconds: 10
       containers:
       - name: minecraft
         image: itzg/minecraft-server
         envFrom:
           - configMapRef:
-              name: server-config-env
+              name: {{ .name }}-config-env
         ports:
         - containerPort: 25565
           name: minecraft
         volumeMounts:
-        - name: server-data
+        - name: {{ .name }}-server-data
           mountPath: /data
-        - name: server-config-files
+        - name: {{ .name }}-config-files
           mountPath: /config
       volumes:
-        - name: server-config-files
+        - name: {{ .name }}-config-files
           configMap:
             name: server-config-files
-  volumeClaimTemplates:
-  - metadata:
-      name: server-data
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      resources:
-        requests:
-          storage: {{ .Values.servers.storageSize }}
+        - name: {{ .name }}-server-data
+          persistentVolumeClaim:
+            claimName: {{ .name }}-pvc
+---
+{{ end }}

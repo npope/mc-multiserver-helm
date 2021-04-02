@@ -1,0 +1,21 @@
+{{- range .Values.servers }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .name }}-config-env
+data:
+  EULA: "true"
+  TYPE: "{{ .type }}"
+  VERSION: "{{ .version }}"
+  DIFFICULTY: "{{ .difficulty }}"
+  ONLINE_MODE: "false"
+  PVP: "{{ .pvp }}"
+  OPS: "{{ .ops }}"
+  ENABLE_RCON: "{{ .enable_rcon }}"
+  RCON_PASSWORD: "{{ .rcon_password }}"
+  GENERATE_STRUCTURES: "{{ .generate_structures }}"
+  MODE: "{{ .mode }}"
+  SERVER_PORT: "25565"
+  COPY_CONFIG_DEST: "/data"
+---
+{{ end }}

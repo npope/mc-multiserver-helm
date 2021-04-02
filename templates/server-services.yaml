@@ -1,0 +1,14 @@
+{{- range .Values.servers }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: minecraft-{{ .name }}-service
+spec:
+  type: ClusterIP
+  selector:
+    app: minecraft
+    server: {{ .name }}
+  ports:
+  - port: 25565
+---
+{{ end }}

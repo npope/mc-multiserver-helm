@@ -7,49 +7,49 @@ lobbyServer: "alpha"
 
 # See https://hub.docker.com/r/itzg/bungeecord for a full explanation of the variables
 proxy:
-  type: "WATERFALL"
-  motd: "Welcome to the Minecraft Server"
-  enable_rcon: "true"
-  rcon_password: "passw0rd!"
-  max_players: 20
+  type: "WATERFALL"                       # Type of bungeecord server to deploy.  WATERFALL works great with PAPER servers
+  motd: "Welcome to the Minecraft Server" # MOTD to display on the "connect" screen
+  enable_rcon: "true"                     # Enable remote console for the bungee proxy
+  rcon_password: "passw0rd!"              # Remote console password
+  max_players: 20                         # Max players allowed to connect via the proxy
 
 # See https://github.com/itzg/docker-minecraft-server/blob/master/README.md for explanation of the variables
 # A deployment and service will be created for the bungeecord proxy and each server defined below.
 # Each server will be attached to the bungeecord proxy.
-servers:
-  - name: "alpha"
-    type: "PAPER"
-    version: "1.16.5"
-    difficulty: "normal"
-    pvp: "false"
-    ops: "mflop"
-    enable_rcon: "true"
-    rcon_password: "passw0rd!"
-    generate_structures: "true"
-    mode: "creative"
-    storageClassName: "default"
-    storageSize: "1Gi"
-  - name: "beta"
-    type: "PAPER"
-    version: "1.16.5"
-    difficulty: "normal"
-    pvp: "false"
-    ops: "mflop"
-    enable_rcon: "true"
-    rcon_password: "passw0rd!"
-    generate_structures: "true"
-    mode: "survival"
-    storageClassName: "default"
-    storageSize: "1Gi"
-  - name: "gamma"
-    type: "PAPER"
-    version: "1.16.5"
-    difficulty: "normal"
-    pvp: "false"
-    ops: "mflop"
-    enable_rcon: "true"
-    rcon_password: "passw0rd!"
-    generate_structures: "true"
-    mode: "creative"
-    storageClassName: "default"
-    storageSize: "1Gi"
+servers:                                  # Create an entry below for each Minecraft server you would like to deploy 
+  - name: "alpha"                         # Name for the server, will show up in commands
+    type: "PAPER"                         # Server type.  PAPER works well with the WATERFALL bungeecord server
+    version: "1.16.5"                     # Minecraft version to run on this server
+    difficulty: "normal"                  # Game difficulty for this server
+    pvp: "false"                          # Allow Player-v-Player on this server?
+    ops: "opname"                         # Insert the Minecraft IDs to op here
+    enable_rcon: "true"                   # Enable the remote console?
+    rcon_password: "passw0rd!"            # Password for the remote console
+    generate_structures: "true"           # Generate strongholds, mineshafts and the like.
+    mode: "creative"                      # Game mode for this server
+    storageClassName: "microk8s-hostpath" # k8s StorageClassName to use for the server data volume
+    storageSize: "1Gi"                    # Size of the PV to request for the data volume
+  - name: "beta"                          # Name for the server, will show up in commands
+    type: "PAPER"                         # Server type.  PAPER works well with the WATERFALL bungeecord server
+    version: "1.16.5"                     # Minecraft version to run on this server
+    difficulty: "normal"                  # Game difficulty for this server
+    pvp: "false"                          # Allow Player-v-Player on this server?
+    ops: "opname"                         # Insert the Minecraft IDs to op here
+    enable_rcon: "true"                   # Enable the remote console?
+    rcon_password: "passw0rd!"            # Password for the remote console
+    generate_structures: "true"           # Generate strongholds, mineshafts and the like.
+    mode: "survival"                      # Game mode for this server
+    storageClassName: "microk8s-hostpath" # k8s StorageClassName to use for the server data volume
+    storageSize: "1Gi"                    # Size of the PV to request for the data volume
+  - name: "gamma"                         # Name for the server, will show up in commands
+    type: "PAPER"                         # Server type.  PAPER works well with the WATERFALL bungeecord server
+    version: "1.16.5"                     # Minecraft version to run on this server
+    difficulty: "normal"                  # Game difficulty for this server
+    pvp: "false"                          # Allow Player-v-Player on this server?
+    ops: "opname"                         # Insert the Minecraft IDs to op here
+    enable_rcon: "true"                   # Enable the remote console?
+    rcon_password: "passw0rd!"            # Password for the remote console
+    generate_structures: "true"           # Generate strongholds, mineshafts and the like.
+    mode: "creative"                      # Game mode for this server
+    storageClassName: "microk8s-hostpath" # k8s StorageClassName to use for the server data volume
+    storageSize: "1Gi"                    # Size of the PV to request for the data volume

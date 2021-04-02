@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: proxy-config-env
+data:
+  EULA: "true"
+  TYPE: "{{ .Values.proxy.type }}"
+  BUNGEE_JAR_URL: ""
+  MEMORY: "512m"
+  INIT_MEMORY: "512m"
+  MAX_MEMORY: "512m"
+  ENABLE_RCON: "{{ .Values.proxy.enable_rcon }}"
+  RCON_PASSWORD: "{{ .Values.proxy.rcon_password }}"

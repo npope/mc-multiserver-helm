@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: minecraft
+spec:
+  selector:
+    matchLabels:
+      app: minecraft
+  serviceName: mcservers
+  replicas: {{ .Values.servers.count }}
+  template:
+    metadata:
+      labels:
+        app: minecraft
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: minecraft
+        image: itzg/minecraft-server
+        envFrom:
+          - configMapRef:
+              name: server-config-env
+        ports:
+        - containerPort: 25565
+          name: minecraft
+        volumeMounts:
+        - name: server-data
+          mountPath: /data
+        - name: server-config-files
+          mountPath: /config
+      volumes:
+        - name: server-config-files
+          configMap:
+            name: server-config-files
+  volumeClaimTemplates:
+  - metadata:
+      name: server-data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: {{ .Values.servers.storageSize }}

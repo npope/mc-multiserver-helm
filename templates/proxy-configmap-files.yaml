@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: proxy-config-files
+data:
+  config.yml: |
+    ip_forward: true
+    online_mode: true
+    servers:
+      lobby:
+        address: minecraft-0.mcservers
+        restricted: false
+      one:
+        address: minecraft-1.mcservers
+        restricted: false
+      two:
+        address: minecraft-2.mcservers
+        restricted: false
+      three:
+        address: minecraft-3.mcservers
+        restricted: false
+    listeners:
+      - motd: {{ .Values.proxy.motd }}
+        priorities:
+        - lobby
+        proxy_protocol: false
+        max_players: {{ .Values.proxy.max_players }}

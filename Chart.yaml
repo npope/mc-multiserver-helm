@@ -1,7 +1,8 @@
 apiVersion: v2
 name: mc-multiserver
-description: Deploy identical Minecraft servers connected via a Bungeecord proxy
+description: Deploy Multiple Minecraft servers + a Bungeecord proxy and connect them together
 
 type: application
-version: 0.1.0
+name: mc-multiserver
+version: 0.1.2
 
